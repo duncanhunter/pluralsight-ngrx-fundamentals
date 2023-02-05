@@ -1,0 +1,46 @@
+<div class="card">
+  <h2 class="title">Product Detail</h2>
+  <form [formGroup]="productForm" (submit)="onSubmit()">
+    <div class="form-field">
+      <div>
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name" formControlName="name" />
+      </div>
+      <span
+        class="invalid"
+        *ngIf="
+          productForm.get('name')?.touched &&
+          productForm.get('name')?.hasError('required')
+        "
+        >Name is required.</span
+      >
+    </div>
+    <div class="form-field">
+      <div>
+        <label for="price">Price:</label>
+        <input
+          min="0"
+          type="number"
+          name="price"
+          id="price"
+          formControlName="price"
+        />
+      </div>
+      <span
+        class="invalid"
+        *ngIf="
+          productForm.get('price')?.touched &&
+          productForm.get('price')?.hasError('min')
+        "
+        >Price must be 0 or greater.</span
+      >
+    </div>
+    <div class="actions">
+      <button type="submit" class="btn btn-primary">Save</button>
+      <button type="button" *ngIf="oldProduct && oldProduct.id > 0" class="btn" (click)="delete.emit(oldProduct.id)">Delete</button>
+      <button type="button" class="btn" [routerLink]="['/products']">
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>

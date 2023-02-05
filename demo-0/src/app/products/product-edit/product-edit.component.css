@@ -1,0 +1,21 @@
+.title {
+  padding: 1rem;
+  margin: 0;
+}
+
+form {
+  padding: 0 1rem 1rem 1rem;
+}
+
+.actions {
+  padding: 1rem 0;
+}
+
+.btn {
+  margin-right: 0.5rem;
+}
+
+.invalid {
+  color: red;
+  padding: 0.25rem 0;
+}

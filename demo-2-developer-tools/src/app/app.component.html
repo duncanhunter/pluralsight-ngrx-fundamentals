@@ -1,0 +1,27 @@
+<header>
+  <nav class="navbar">
+    <a class="navbar-title" href="#">NgRx Fundamentals</a>
+    <ul class="navbar-list">
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          routerLink="/"
+          routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >home</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          routerLink="/products"
+          routerLinkActive="active-link"
+          >products</a
+        >
+      </li>
+    </ul>
+  </nav>
+</header>
+<main>
+  <router-outlet></router-outlet>
+</main>
