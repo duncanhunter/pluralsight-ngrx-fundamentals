@@ -1,4 +1,4 @@
-# NgRx Fundamentals - Demo 3 Loading Data
+# NgRx Fundamentals - Demo 5 Effects
 
 ## Steps
 
@@ -20,9 +20,4 @@ mention clear state
 summary
 we looked at side effect, exception handling
 next we look at manging router state with router store
------ 
-update edit
-introduce the edit page and get state with id
-router store
-navigate in effect on get
-where to initialise state ok for us as we manage the updates
+

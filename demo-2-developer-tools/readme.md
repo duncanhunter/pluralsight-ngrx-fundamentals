@@ -1,4 +1,4 @@
-# NgRx Fundamentals - Demo 1 Developer Tools
+# NgRx Fundamentals - Demo 2 Developer Tools
 
 ## Steps
 
