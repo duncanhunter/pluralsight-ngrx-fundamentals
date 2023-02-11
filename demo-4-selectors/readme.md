@@ -25,4 +25,5 @@ export const ProductsAPIActions = createActionGroup({
 3. Update 
 `products-page.ts` and `products.reducer.ts` to use new shared actions.
 4. Add update reducer state and actions
+5. delete imports at top of the page
 
