@@ -1,3 +1,7 @@
+<div class="card error-card" *ngIf="errorMessage">
+  Error: {{ errorMessage }}
+</div>
+
 <div *ngIf="!loading; else loadingElement">
   <div class="container">
     <app-products-list

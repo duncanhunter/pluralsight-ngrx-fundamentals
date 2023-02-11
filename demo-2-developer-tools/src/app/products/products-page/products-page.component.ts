@@ -16,6 +16,7 @@ export class ProductsPageComponent {
   showProductCode$ = this.store.select(
     (state: any) => state.products.showProductCode
   );
+  errorMessage = '';
 
   constructor(private productsService: ProductsService, private store: Store) {}
 

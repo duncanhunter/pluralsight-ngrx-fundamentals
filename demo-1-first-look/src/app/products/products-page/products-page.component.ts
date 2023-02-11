@@ -16,6 +16,7 @@ export class ProductsPageComponent {
   showProductCode$ = this.store.select(
     (state: any) => state.products.showProductCode
   );
+  errorMessage = '';
 
   constructor(private productsService: ProductsService, private store: Store) {}
 
@@ -28,7 +29,8 @@ export class ProductsPageComponent {
       this.products = products;
       this.total = sumProducts(products);
       this.loading = false;
-    });
+    },
+    (error) => (this.errorMessage = error));
   }
 
   toggleShowProductCode() {

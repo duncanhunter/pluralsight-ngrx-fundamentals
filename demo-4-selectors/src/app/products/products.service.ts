@@ -12,11 +12,15 @@ export class ProductsService {
   constructor(private http: HttpClient) {}
 
   getAll() {
-    return this.http.get<Product[]>(this.productsAPIUrl);
+    return this.http
+      .get<Product[]>(this.productsAPIUrl)
+      .pipe(catchError(this.handleError));
   }
 
   getById(id: number) {
-    return this.http.get<Product>(`${this.productsAPIUrl}/${id}`);
+    return this.http
+      .get<Product>(`${this.productsAPIUrl}/${id}`)
+      .pipe(catchError(this.handleError));
   }
 
   update(product: Product): Observable<Product> {
@@ -36,17 +40,9 @@ export class ProductsService {
     return this.http.delete(url).pipe(catchError(this.handleError));
   }
 
-  private handleError(error: HttpErrorResponse) {
-    if (error.status === 0) {
-      console.error('An error occurred:', error.error);
-    } else {
-      console.error(
-        `Backend returned code ${error.status}, body was: `,
-        error.error
-      );
-    }
+  private handleError({ status }: HttpErrorResponse) {
     return throwError(
-      () => new Error('Something bad happened; please try again later.')
+      () => `${status}: Something bad happened.`
     );
   }
 }

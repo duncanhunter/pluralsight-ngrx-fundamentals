@@ -1,0 +1,37 @@
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  display: flex;
+  list-style-type: none;
+  padding: 0.75rem 0;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  border-top: 1px solid #d1d5db;
+}
+
+li button {
+  margin-left: 0.5rem;
+}
+
+.title {
+  padding: 1rem;
+  margin: 0;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header > button {
+  margin: 1rem;
+}
+
+input[type="checkbox"] {
+  margin-right: 0.5rem;
+}

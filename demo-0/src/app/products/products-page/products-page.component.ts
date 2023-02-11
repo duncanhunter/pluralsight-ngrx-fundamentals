@@ -13,6 +13,7 @@ export class ProductsPageComponent {
   total = 0;
   loading = true;
   showProductCode = false;
+  errorMessage = '';
 
   constructor(private productsService: ProductsService) {}
 
@@ -21,11 +22,14 @@ export class ProductsPageComponent {
   }
 
   getProducts() {
-    this.productsService.getAll().subscribe((products) => {
-      this.products = products;
-      this.total = sumProducts(products);
-      this.loading = false;
-    });
+    this.productsService.getAll().subscribe(
+      (products) => {
+        this.products = products;
+        this.total = sumProducts(products);
+        this.loading = false;
+      },
+      (error) => (this.errorMessage = error)
+    );
   }
 
   toggleShowProductCode() {

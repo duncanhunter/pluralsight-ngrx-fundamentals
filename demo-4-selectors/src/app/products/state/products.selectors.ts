@@ -20,4 +20,9 @@ export const selectProducts = createSelector(
   ({ products }) => products
 );
 
+export const selectProductsErrorMessage = createSelector(
+  selectProductsState,
+  ({ errorMessage }) => errorMessage
+);
+
 export const selectProductsTotal = createSelector(selectProducts, sumProducts);

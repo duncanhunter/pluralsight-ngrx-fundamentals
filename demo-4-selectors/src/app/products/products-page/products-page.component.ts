@@ -7,6 +7,7 @@ import {
 } from '../state/products.actions';
 import {
   selectProducts,
+  selectProductsErrorMessage,
   selectProductsLoading,
   selectProductsShowProductCode,
   selectProductsTotal,
@@ -22,6 +23,7 @@ export class ProductsPageComponent {
   total$ = this.store.select(selectProductsTotal);
   loading$ = this.store.select(selectProductsLoading);
   showProductCode$ = this.store.select(selectProductsShowProductCode);
+  errorMessage = this.store.select(selectProductsErrorMessage)
 
   constructor(private productsService: ProductsService, private store: Store) {}
 
@@ -35,7 +37,8 @@ export class ProductsPageComponent {
       this.store.dispatch(
         ProductsAPIActions.productsLoadedSuccess({ products })
       );
-    });
+    },
+    (error) => (this.errorMessage = error));
   }
 
   toggleShowProductCode() {
