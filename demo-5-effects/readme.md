@@ -11,10 +11,11 @@
 ```ts
 ```
 
-5. add other effects and actions (we will update them in the product page component soon). Discuss race conditions
-6. handle exceptions
+5. handle exceptions
 - add catchError
 - add reducer on and update load
+6. add other effects and actions (we will update them in the product page component soon). Discuss race conditions
+mention clear state 
 
 summary
 we looked at side effect, exception handling

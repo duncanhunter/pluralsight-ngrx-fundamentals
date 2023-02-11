@@ -26,6 +26,7 @@ export const productsReducer = createReducer(
     ...state,
     loading: true,
     errorMessage: '',
+    products: []
   })),
   on(ProductsAPIActions.productsLoadedSuccess, (state, { products }) => ({
     ...state,

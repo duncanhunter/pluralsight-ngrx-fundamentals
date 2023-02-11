@@ -25,4 +25,5 @@ export const ProductsAPIActions = createActionGroup({
 3. Update 
 `products-page.ts` and `products.reducer.ts` to use new shared actions.
 4. Add update reducer state and actions
+- discuss load needs to be reset best here versus jumping around later
 

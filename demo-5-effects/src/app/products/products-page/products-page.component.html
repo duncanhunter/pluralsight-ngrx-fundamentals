@@ -1,5 +1,5 @@
-<div class="card error-card" *ngIf="errorMessage">
-  Error: {{ errorMessage }}
+<div class="card error-card" *ngIf="(errorMessage$ | async) !== ''">
+  Error: {{ errorMessage$ | async }}
 </div>
 
 <div *ngIf="(loading$ | async) === false; else loadingElement">

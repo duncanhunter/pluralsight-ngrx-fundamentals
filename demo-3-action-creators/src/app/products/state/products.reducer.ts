@@ -1,4 +1,4 @@
-import { createAction, createReducer, on } from '@ngrx/store';
+import { createReducer, on } from '@ngrx/store';
 import { Product } from '../product.model';
 import { ProductsAPIActions, ProductsPageActions } from './products.actions';
 
@@ -25,6 +25,8 @@ export const productsReducer = createReducer(
   on(ProductsPageActions.loadProducts, (state) => ({
     ...state,
     loading: true,
+    errorMessage: '',
+    products: []
   })),
   on(ProductsAPIActions.productsLoadedSuccess, (state, { products }) => ({
     ...state,
