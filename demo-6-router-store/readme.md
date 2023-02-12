@@ -20,11 +20,24 @@ fix add by showing the issue
 remove route deps and route in the effect 
 add router to effect
 update compon and update delete calls
-5. lets use router store 
+6. lets use router store 
+- npm i router store
+- register in app module and its reducer
+- add aselector
 
------ 
-update edit
-introduce the edit page and get state with id
-router store
-navigate in effect on get
-where to initialise state ok for us as we manage the updates
+```ts
+export const { selectRouteParams } = getRouterSelectors();
+
+export const selectProductById = createSelector(
+  selectRouteParams,
+  selectProductsState,
+  ({ id },{ products }) => products.find((product) => product.id === parseInt(id))
+);
+
+```
+7. sumary
+- made selectProductById selector and passed along the id
+- then we relased we broke the app needing to init of feature module
+- then updated the rest of the crud actions and looed an routing in the effect
+- then we used the router store and got the router state from composing selectors
+- this really clean up the component

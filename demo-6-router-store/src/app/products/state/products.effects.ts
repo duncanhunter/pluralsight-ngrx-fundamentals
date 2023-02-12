@@ -39,13 +39,14 @@ export class ProductEffects {
     this.actions$.pipe(
       ofType(ProductsPageActions.addProduct),
       concatMap(({ product }) =>
-        this.productsService
-          .add(product)
-          .pipe(
-            map((product) =>
-              ProductsAPIActions.productAddedSuccess({ product })
-            )
+        this.productsService.add(product).pipe(
+          map((newProduct) =>
+            ProductsAPIActions.productAddedSuccess({ product: newProduct })
+          ),
+          catchError((error) =>
+            of(ProductsAPIActions.productAddedFail({ message: error }))
           )
+        )
       )
     )
   );
@@ -54,13 +55,12 @@ export class ProductEffects {
     this.actions$.pipe(
       ofType(ProductsPageActions.updateProduct),
       concatMap(({ product }) =>
-        this.productsService
-          .update(product)
-          .pipe(
-            map((product) =>
-              ProductsAPIActions.productUpdatedSuccess({ product })
-            )
+        this.productsService.update(product).pipe(
+          map(() => ProductsAPIActions.productUpdatedSuccess({ product })),
+          catchError((error) =>
+            of(ProductsAPIActions.productUpdatedFail({ message: error }))
           )
+        )
       )
     )
   );
@@ -72,6 +72,9 @@ export class ProductEffects {
         this.productsService
           .delete(id)
           .pipe(map(() => ProductsAPIActions.productDeletedSuccess({ id })))
+      ),
+      catchError((error) =>
+        of(ProductsAPIActions.productDeletedFail({ message: error }))
       )
     )
   );

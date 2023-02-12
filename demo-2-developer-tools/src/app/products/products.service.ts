@@ -23,15 +23,15 @@ export class ProductsService {
       .pipe(catchError(this.handleError));
   }
 
-  update(product: Product): Observable<Product> {
-    return this.http
-      .put<Product>(this.productsAPIUrl, product)
-      .pipe(catchError(this.handleError));
-  }
-
   add({ name, price }: Product): Observable<Product> {
     return this.http
       .post<Product>(this.productsAPIUrl, { name, price })
+      .pipe(catchError(this.handleError));
+  }
+
+  update(product: Product): Observable<Product> {
+    return this.http
+      .put<Product>(this.productsAPIUrl, product)
       .pipe(catchError(this.handleError));
   }
 

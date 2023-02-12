@@ -25,34 +25,34 @@ export class ProductEffects {
   );
 
   addProduct$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(ProductsPageActions.addProduct),
-      concatMap(({ product }) =>
-        this.productsService
-          .add(product)
-          .pipe(
-            map((product) =>
-              ProductsAPIActions.productAddedSuccess({ product })
-            )
-          )
+  this.actions$.pipe(
+    ofType(ProductsPageActions.addProduct),
+    concatMap(({ product }) =>
+      this.productsService.add(product).pipe(
+        map((newProduct) =>
+          ProductsAPIActions.productAddedSuccess({ product: newProduct })
+        ),
+        catchError((error) =>
+          of(ProductsAPIActions.productAddedFail({ message: error }))
+        )
       )
     )
-  );
+  )
+);
 
-  updateProduct$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(ProductsPageActions.updateProduct),
-      concatMap(({ product }) =>
-        this.productsService
-          .update(product)
-          .pipe(
-            map((product) =>
-              ProductsAPIActions.productUpdatedSuccess({ product })
-            )
-          )
+updateProduct$ = createEffect(() =>
+  this.actions$.pipe(
+    ofType(ProductsPageActions.updateProduct),
+    concatMap(({ product }) =>
+      this.productsService.update(product).pipe(
+        map(() => ProductsAPIActions.productUpdatedSuccess({ product })),
+        catchError((error) =>
+          of(ProductsAPIActions.productUpdatedFail({ message: error }))
+        )
       )
     )
-  );
+  )
+);
 
   deleteProduct$ = createEffect(() =>
     this.actions$.pipe(
@@ -61,6 +61,9 @@ export class ProductEffects {
         this.productsService
           .delete(id)
           .pipe(map(() => ProductsAPIActions.productDeletedSuccess({ id })))
+      ),
+      catchError((error) =>
+        of(ProductsAPIActions.productDeletedFail({ message: error }))
       )
     )
   );
