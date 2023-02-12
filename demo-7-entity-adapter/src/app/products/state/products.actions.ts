@@ -1,3 +1,4 @@
+import { Update } from '@ngrx/entity';
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
 import { Product } from '../product.model';
 
@@ -20,7 +21,7 @@ export const ProductsAPIActions = createActionGroup({
     'Products Loaded Fail': props<{ message: string }>(),
     'Product Added Success': props<{ product: Product }>(),
     'Product Added Fail': props<{ message: string }>(),
-    'Product Updated Success': props<{ product: Product }>(),
+    'Product Updated Success': props<{ update: Update<Product> }>(),
     'Product Updated Fail': props<{ message: string }>(),
     'Product Deleted Success': props<{ id: number }>(),
     'Product Deleted Fail': props<{ message: string }>(),
