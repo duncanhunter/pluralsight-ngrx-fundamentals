@@ -1,0 +1,16 @@
+<div class="card error-card" *ngIf="(errorMessage$ | async) !== ''">
+  Error: {{ errorMessage$ | async }}
+</div>
+
+<div *ngIf="(loading$ | async) === false; else loadingElement">
+  <div class="container">
+    <app-products-list
+      [total]="total$ | async"
+      [products]="products$ | async"
+      [showProductCode]="showProductCode$ | async"
+      (toggleProductCode)="toggleShowProductCode()"
+    ></app-products-list>
+  </div>
+</div>
+
+<ng-template #loadingElement>Loading...</ng-template>
