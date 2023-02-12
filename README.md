@@ -1,6 +1,6 @@
 # pluralsight-ngrx-15-fundamentals
 
-Work In Progress Materials for NgRx course.
+Pluralsight Course Materials for NgRx Fundamentals.
 
 | Demo Name              | Description and Course Module                                                  |
 | ---------------------- | ------------------------------------------------------------------------------ |
