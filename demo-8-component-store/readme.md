@@ -1,55 +1,33 @@
-# NgRx Fundamentals - Demo 7 entity adapter
+# NgRx Fundamentals - Demo 8 Component Store
 
 ## Steps
 
 0. intro
-- In previous modules we needed to loop over products to update, delete and select a product. Delaing with collections of entities can be easier if we store them as a dictionary or map of key value pairs.
-This can make getting and setting an individual entity mich easier and performant but also easier to write selectors.
+- local state
+- pattern dispatch actions, pure function = reducer, effects side effect
+- component store cleans up, no actions
+- jump in product list component 
 
-1. let npm i  `@ngrx/entity` nothing to register
-2. use it in out reducer
-- create state, adapter and intital state
-- update broken reducer and effect Update
-
-```ts
-map(() =>
-    ProductsAPIActions.productUpdatedSuccess({
-        update: { id: product.id, changes: product },
-    }))
-```
-
-3. update our selectors
-- try update selector and no array any more
-- go export adapter selctors
+1. install `@ngrrx/component-store`
+2. new file `products.store.ts`
+- code from scratch
 
 ```ts
-const { selectAll, selectEntities } = adapter.getSelectors();
+export interface ProductsState {
+  total: number;
+  products: Product[];
+}
 
-export const productSelectors = {
-  selectAllProducts: selectAll,
-  selectEntities: selectEntities,
-};
+@Injectable()
+export class ProductsStore extends ComponentStore<ProductsState> {
+  products$ = this.select((state) => state.products);
+  total$ = this.select((state) => sumProducts(state.products));
+
+  constructor(private productsService: ProductsService) {
+    super({ products: [], total: 0 });
+  }
 ```
-
-- make new selector with them by feeding in product state
-
-```ts
-export const selectProducts = createSelector(
-  selectProductsState,
-  productSelectors.selectAllProducts
-);
-
-export const selectProductEntities = createSelector(
-  selectProductsState,
-  productSelectors.selectEntities
-);
-
-// ---------
-
-export const selectProductById = createSelector(
-  selectRouteParams,
-  selectProductEntities,
-  ({ id }, entities) => entities[id]
-);
-
-```
+3. update the products-page.components.ts
+- remove ngrx store and inject componentStore and in provider
+- hard code response for not implemented observables
+4. discuss I would leave products in the global store as need it also on the edit page. I could provide it on the product module level but then it is more global than component and will stick with normal ngrx global store.

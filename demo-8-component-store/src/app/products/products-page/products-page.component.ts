@@ -1,29 +1,27 @@
 import { Component } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { ProductsPageActions } from '../state/products.actions';
-import {
-  selectProducts,
-  selectProductsErrorMessage,
-  selectProductsLoading,
-  selectProductsShowProductCode,
-  selectProductsTotal,
-} from '../state/products.selectors';
+import { of } from 'rxjs';
+import { ProductsStore } from '../products.store';
 
 @Component({
   selector: 'app-products-page',
   templateUrl: './products-page.component.html',
   styleUrls: ['./products-page.component.css'],
+  providers: [ProductsStore],
 })
 export class ProductsPageComponent {
-  products$ = this.store.select(selectProducts);
-  total$ = this.store.select(selectProductsTotal);
-  showProductCode$ = this.store.select(selectProductsShowProductCode);
-  loading$ = this.store.select(selectProductsLoading);
-  errorMessage$ = this.store.select(selectProductsErrorMessage);
+  products$ = this.productsStore.products$;
+  total$ = this.productsStore.total$;
+  showProductCode$ = of(false);
+  loading$ = of(false);
+  errorMessage$ = of('');
 
-  constructor(private store: Store) {}
+  constructor(private productsStore: ProductsStore) {}
+
+  ngOnInit() {
+    this.productsStore.getProducts();
+  }
 
   toggleShowProductCode() {
-    this.store.dispatch(ProductsPageActions.toggleShowProductCode());
+    alert('not implemented');
   }
 }
