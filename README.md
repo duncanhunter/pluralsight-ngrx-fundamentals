@@ -10,6 +10,6 @@ Work In Progress Materials for NgRx course.
 | demo-3-action-creators | Module 5 Strongly Typing Actions with Action Creators                          |
 | demo-4-selectors       | Module 6 Selecting State with Selectors                                        |
 | demo-5-effects         | Module 7 Working with Effects                                                  |
-| demo-6-entity-adapter  | Module 8 Managing Collections with Entity Adapter                              |
-| demo-7-router-store    | Module 9 Listen to Router State with Router Store                              |
+| demo-6-router-store    | Module 8 Listen to Router State with Router Store                              |
+| demo-7-entity-adapter  | Module 9 Managing Collections with Entity Adapter                              |
 | demo-8-component-store | Module 10 Manage Local State with Component Store                              |
