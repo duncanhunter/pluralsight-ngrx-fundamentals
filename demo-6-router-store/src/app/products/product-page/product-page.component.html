@@ -1,9 +1,9 @@
-<div *ngIf="product$ | async as product; else loadingElement">
+<div *ngIf="(loading$ | async) === false; else loadingElement">
   <app-product-edit
     (add)="addProduct($event)"
     (update)="updateProduct($event)"
     (delete)="deleteProduct($event)"
-    [product]="product"
+    [product]="product$ | async"
   ></app-product-edit>
 </div>
 

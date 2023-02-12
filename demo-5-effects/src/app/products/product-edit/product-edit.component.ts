@@ -8,11 +8,11 @@ import { Product } from '../product.model';
   styleUrls: ['./product-edit.component.css'],
 })
 export class ProductEditComponent {
-  oldProduct: Product | null = null;
+  oldProduct: Product  | null | undefined = null;
   @Output() add = new EventEmitter<Product>();
   @Output() update = new EventEmitter<Product>();
   @Output() delete = new EventEmitter<number>();
-  @Input() set product(product: Product | null) {
+  @Input() set product(product: Product | null | undefined) {
     this.productForm.reset({ name: '', price: 0 });
     if (product && product.id !== 0) {
       this.productForm.setValue({

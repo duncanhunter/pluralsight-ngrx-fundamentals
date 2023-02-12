@@ -17,15 +17,11 @@ import {
 export class ProductsPageComponent {
   products$ = this.store.select(selectProducts);
   total$ = this.store.select(selectProductsTotal);
-  loading$ = this.store.select(selectProductsLoading);
   showProductCode$ = this.store.select(selectProductsShowProductCode);
+  loading$ = this.store.select(selectProductsLoading);
   errorMessage$ = this.store.select(selectProductsErrorMessage);
 
   constructor(private store: Store) {}
-
-  ngOnInit() {
-    this.store.dispatch(ProductsPageActions.loadProducts());
-  }
 
   toggleShowProductCode() {
     this.store.dispatch(ProductsPageActions.toggleShowProductCode());

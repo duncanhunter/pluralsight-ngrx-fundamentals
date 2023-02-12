@@ -26,3 +26,8 @@ export const selectProductsErrorMessage = createSelector(
 );
 
 export const selectProductsTotal = createSelector(selectProducts, sumProducts);
+
+export const selectProductById = (id: number) =>
+  createSelector(selectProductsState, ({ products }) =>
+    products.find((product) => product.id === id)
+  );
