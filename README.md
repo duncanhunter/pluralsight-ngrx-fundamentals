@@ -1,4 +1,4 @@
-# pluralsight-ngrx-15-fundamentals
+# pluralsight-ngrx-fundamentals
 
 Pluralsight Course Materials for NgRx Fundamentals.
 
