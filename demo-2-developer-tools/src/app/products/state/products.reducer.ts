@@ -5,7 +5,7 @@ export interface ProductsState {
 }
 
 const intitialState: ProductsState = {
-  showProductCode: false,
+  showProductCode: true,
 };
 
 export const productsReducer = createReducer(

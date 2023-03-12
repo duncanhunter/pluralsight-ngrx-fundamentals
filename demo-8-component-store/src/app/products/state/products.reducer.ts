@@ -14,7 +14,7 @@ export interface ProductsState extends EntityState<Product> {
 export const adapter: EntityAdapter<Product> = createEntityAdapter<Product>({});
 
 const intitialState: ProductsState = adapter.getInitialState({
-  showProductCode: false,
+  showProductCode: true,
   loading: false,
   errorMessage: '',
   // ids: string[] | number[];
