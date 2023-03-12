@@ -22,16 +22,17 @@ export class ProductsPageComponent {
 
   ngOnInit() {
     this.getProducts();
-    this.store.subscribe((state) =>
-      console.log('Log Store From Products Page: ', state)
-    );
+    this.store.subscribe((state) => console.log({ state }));
   }
 
   getProducts() {
-    this.productsService.getAll().subscribe((products) => {
-      this.products = products;
-      this.total = sumProducts(products);
-      this.loading = false;
+    this.productsService.getAll().subscribe({
+      next: (products) => {
+        this.products = products;
+        this.total = sumProducts(products);
+        this.loading = false;
+      },
+      error: (error) => (this.errorMessage = error),
     });
   }
 

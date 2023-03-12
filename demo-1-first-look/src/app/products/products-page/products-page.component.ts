@@ -25,12 +25,14 @@ export class ProductsPageComponent {
   }
 
   getProducts() {
-    this.productsService.getAll().subscribe((products) => {
-      this.products = products;
-      this.total = sumProducts(products);
-      this.loading = false;
-    },
-    (error) => (this.errorMessage = error));
+    this.productsService.getAll().subscribe({
+      next: (products) => {
+        this.products = products;
+        this.total = sumProducts(products);
+        this.loading = false;
+      },
+      error: (error) => (this.errorMessage = error),
+    });
   }
 
   toggleShowProductCode() {

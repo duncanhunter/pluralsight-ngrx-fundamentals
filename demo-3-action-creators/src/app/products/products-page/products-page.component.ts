@@ -21,7 +21,6 @@ export class ProductsPageComponent {
   );
   errorMessage = '';
 
-
   constructor(private productsService: ProductsService, private store: Store) {}
 
   ngOnInit() {
@@ -30,12 +29,14 @@ export class ProductsPageComponent {
 
   getProducts() {
     this.store.dispatch(ProductsPageActions.loadProducts());
-    this.productsService.getAll().subscribe((products) => {
-      this.store.dispatch(
-        ProductsAPIActions.productsLoadedSuccess({ products })
-      );
-    },
-    (error) => (this.errorMessage = error));
+    this.productsService.getAll().subscribe({
+      next: (products) => {
+        this.store.dispatch(
+          ProductsAPIActions.productsLoadedSuccess({ products })
+        );
+      },
+      error: (error) => (this.errorMessage = error),
+    });
   }
 
   toggleShowProductCode() {
