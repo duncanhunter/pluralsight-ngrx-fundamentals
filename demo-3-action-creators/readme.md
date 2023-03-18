@@ -1,4 +1,4 @@
-# NgRx Fundamentals - Demo 3 Loading Data
+# NgRx Fundamentals - Demo 3 Action Creators
 
 ## Steps
 
@@ -19,7 +19,7 @@ export const ProductsAPIActions = createActionGroup({
     'Products Loaded Success': props<{ products: ReadonlyArray<Product> }>(),
     'Products Loaded Fail': props<{ message: string }>(),
   },
-});
+}); 
 ```
 
 3. Update 
