@@ -2,11 +2,11 @@
   Error: {{ errorMessage }}
 </div>
 
-<div *ngIf="!loading; else loadingElement">
+<div *ngIf="(loading$ | async) === false; else loadingElement">
   <div class="container">
     <app-products-list
       [total]="total"
-      [products]="products"
+      [products]="products$ | async"
       [showProductCode]="showProductCode$ | async"
       (toggleProductCode)="toggleShowProductCode()"
     ></app-products-list>

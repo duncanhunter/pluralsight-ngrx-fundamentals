@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { sumProducts } from 'src/app/utils/sum-products';
 import { Product } from '../product.model';
 import { ProductsService } from '../products.service';
 import {
@@ -13,15 +14,17 @@ import {
   styleUrls: ['./products-page.component.css'],
 })
 export class ProductsPageComponent {
-  products: Product[] = [];
+  products$ = this.store.select((state: any) => state.products.products);
   total = 0;
-  loading = true;
+  loading$ = this.store.select((state: any) => state.products.loading);
   showProductCode$ = this.store.select(
     (state: any) => state.products.showProductCode
   );
   errorMessage = '';
 
-  constructor(private productsService: ProductsService, private store: Store) {}
+  constructor(private productsService: ProductsService, private store: Store) {
+    this.store.subscribe((store) => console.log({ store }));
+  }
 
   ngOnInit() {
     this.getProducts();
