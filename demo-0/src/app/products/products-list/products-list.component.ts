@@ -7,8 +7,8 @@ import { Product } from '../product.model';
   styleUrls: ['./products-list.component.css'],
 })
 export class ProductsListComponent {
-  @Input() products: Product[] = [];
-  @Input() total = 0;
-  @Input() showProductCode = false;
+  @Input() products: Product[] | null = [];
+  @Input() total: number | null = 0;
+  @Input() showProductCode: boolean | null = false;
   @Output() toggleProductCode = new EventEmitter<void>();
 }
