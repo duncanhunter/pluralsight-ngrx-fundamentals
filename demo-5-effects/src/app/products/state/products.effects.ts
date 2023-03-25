@@ -15,9 +15,7 @@ export class ProductEffects {
             ProductsAPIActions.productsLoadedSuccess({ products })
           ),
           catchError((error) =>
-            of(
-              ProductsAPIActions.productsLoadedFail({ message: error })
-            )
+            of(ProductsAPIActions.productsLoadedFail({ message: error }))
           )
         )
       )
@@ -25,34 +23,34 @@ export class ProductEffects {
   );
 
   addProduct$ = createEffect(() =>
-  this.actions$.pipe(
-    ofType(ProductsPageActions.addProduct),
-    concatMap(({ product }) =>
-      this.productsService.add(product).pipe(
-        map((newProduct) =>
-          ProductsAPIActions.productAddedSuccess({ product: newProduct })
-        ),
-        catchError((error) =>
-          of(ProductsAPIActions.productAddedFail({ message: error }))
+    this.actions$.pipe(
+      ofType(ProductsPageActions.addProduct),
+      concatMap(({ product }) =>
+        this.productsService.add(product).pipe(
+          map((newProduct) =>
+            ProductsAPIActions.productAddedSuccess({ product: newProduct })
+          ),
+          catchError((error) =>
+            of(ProductsAPIActions.productAddedFail({ message: error }))
+          )
         )
       )
     )
-  )
-);
+  );
 
-updateProduct$ = createEffect(() =>
-  this.actions$.pipe(
-    ofType(ProductsPageActions.updateProduct),
-    concatMap(({ product }) =>
-      this.productsService.update(product).pipe(
-        map(() => ProductsAPIActions.productUpdatedSuccess({ product })),
-        catchError((error) =>
-          of(ProductsAPIActions.productUpdatedFail({ message: error }))
+  updateProduct$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ProductsPageActions.updateProduct),
+      concatMap(({ product }) =>
+        this.productsService.update(product).pipe(
+          map(() => ProductsAPIActions.productUpdatedSuccess({ product })),
+          catchError((error) =>
+            of(ProductsAPIActions.productUpdatedFail({ message: error }))
+          )
         )
       )
     )
-  )
-);
+  );
 
   deleteProduct$ = createEffect(() =>
     this.actions$.pipe(
