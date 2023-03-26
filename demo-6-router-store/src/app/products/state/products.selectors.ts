@@ -33,5 +33,6 @@ export const { selectRouteParams } = getRouterSelectors();
 export const selectProductById = createSelector(
   selectRouteParams,
   selectProductsState,
-  ({ id },{ products }) => products.find((product) => product.id === parseInt(id))
+  ({ id }, { products }) =>
+    products.find((product) => product.id === parseInt(id))
 );
