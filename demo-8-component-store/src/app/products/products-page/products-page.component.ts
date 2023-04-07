@@ -1,5 +1,13 @@
 import { Component } from '@angular/core';
-import { of } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { ProductsPageActions } from '../state/products.actions';
+import {
+  selectProducts,
+  selectProductsErrorMessage,
+  selectProductsLoading,
+  selectProductsTotal,
+  selectShowProductCode as selectProductsShowProductCode,
+} from '../state/products.selectors';
 import { ProductsStore } from '../products.store';
 
 @Component({
@@ -10,18 +18,20 @@ import { ProductsStore } from '../products.store';
 })
 export class ProductsPageComponent {
   products$ = this.productsStore.products$;
-  total$ = this.productsStore.total$;
-  showProductCode$ = of(false);
-  loading$ = of(false);
-  errorMessage$ = of('');
+  total$ = this.store.select(selectProductsTotal);
+  loading$ = this.store.select(selectProductsLoading);
+  showProductCode$ = this.store.select(selectProductsShowProductCode);
+  errorMessage$ = this.store.select(selectProductsErrorMessage);
 
-  constructor(private productsStore: ProductsStore) {}
+  constructor(private store: Store, private productsStore: ProductsStore) {
+    this.store.subscribe((store) => console.log({ store }));
+  }
 
   ngOnInit() {
     this.productsStore.getProducts();
   }
 
   toggleShowProductCode() {
-    alert('not implemented');
+    this.store.dispatch(ProductsPageActions.toggleShowProductCode());
   }
 }
