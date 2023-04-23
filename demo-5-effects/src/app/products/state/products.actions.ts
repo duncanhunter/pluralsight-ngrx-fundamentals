@@ -6,9 +6,9 @@ export const ProductsPageActions = createActionGroup({
   events: {
     'Toggle Show Product Code': emptyProps(),
     'Load Products': emptyProps(),
-    'Add Product': props<{product: Product}>(),
-    'Update Product': props<{product: Product}>(),
-    'Delete Product': props<{id: number}>(),
+    'Add Product': props<{ product: Product }>(),
+    'Update Product': props<{ product: Product }>(),
+    'Delete Product': props<{ id: number }>(),
   },
 });
 
