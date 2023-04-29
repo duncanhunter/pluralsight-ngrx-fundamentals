@@ -7,11 +7,19 @@ import {
   selectProductsErrorMessage,
   selectProductsLoading,
 } from '../state/products.selectors';
+import { ProductEditComponent } from '../product-edit/product-edit.component';
+import { NgIf, AsyncPipe } from '@angular/common';
 
 @Component({
-  selector: 'app-product-page',
-  templateUrl: './product-page.component.html',
-  styleUrls: ['./product-page.component.css'],
+    selector: 'app-product-page',
+    templateUrl: './product-page.component.html',
+    styleUrls: ['./product-page.component.css'],
+    standalone: true,
+    imports: [
+        NgIf,
+        ProductEditComponent,
+        AsyncPipe,
+    ],
 })
 export class ProductPageComponent {
   product$ = this.store.select(selectProductById);

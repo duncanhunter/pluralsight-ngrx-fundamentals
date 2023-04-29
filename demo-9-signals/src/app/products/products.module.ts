@@ -12,18 +12,16 @@ import { EffectsModule } from '@ngrx/effects';
 import { ProductEffects } from './state/products.effects';
 
 @NgModule({
-  declarations: [
-    ProductsPageComponent,
-    ProductsListComponent,
-    ProductEditComponent,
-    ProductPageComponent,
-  ],
-  imports: [
-    CommonModule,
-    ProductsRoutingModule,
-    ReactiveFormsModule,
-    StoreModule.forFeature('products', productsReducer),
-    EffectsModule.forFeature([ProductEffects])
-  ],
+    imports: [
+        CommonModule,
+        ProductsRoutingModule,
+        ReactiveFormsModule,
+        StoreModule.forFeature('products', productsReducer),
+        EffectsModule.forFeature([ProductEffects]),
+        ProductsPageComponent,
+        ProductsListComponent,
+        ProductEditComponent,
+        ProductPageComponent
+    ],
 })
 export class ProductsModule {}
