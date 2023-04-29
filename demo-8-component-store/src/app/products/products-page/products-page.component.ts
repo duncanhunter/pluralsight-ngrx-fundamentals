@@ -2,11 +2,10 @@ import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { ProductsPageActions } from '../state/products.actions';
 import {
-  selectProducts,
   selectProductsErrorMessage,
   selectProductsLoading,
   selectProductsTotal,
-  selectShowProductCode as selectProductsShowProductCode,
+  selectProductsShowProductCode,
 } from '../state/products.selectors';
 import { ProductsStore } from '../products.store';
 

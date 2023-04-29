@@ -21,7 +21,7 @@ export const selectProductsLoading = createSelector(
   (productsState) => productsState.loading
 );
 
-export const selectShowProductCode = createSelector(
+export const selectProductsShowProductCode = createSelector(
   selectProductsState,
   (productsState) => productsState.showProductCode
 );
