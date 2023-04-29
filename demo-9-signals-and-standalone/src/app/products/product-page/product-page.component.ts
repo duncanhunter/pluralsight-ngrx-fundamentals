@@ -4,27 +4,31 @@ import { Product } from '../product.model';
 import { ProductsPageActions } from '../state/products.actions';
 import {
   selectProductById,
-  selectProductsErrorMessage,
   selectProductsLoading,
 } from '../state/products.selectors';
 import { ProductEditComponent } from '../product-edit/product-edit.component';
 import { NgIf, AsyncPipe } from '@angular/common';
 
 @Component({
-    selector: 'app-product-page',
-    templateUrl: './product-page.component.html',
-    styleUrls: ['./product-page.component.css'],
-    standalone: true,
-    imports: [
-        NgIf,
-        ProductEditComponent,
-        AsyncPipe,
-    ],
+  standalone: true,
+  selector: 'app-product-page',
+  imports: [NgIf, ProductEditComponent, AsyncPipe],
+  template: `
+    <div *ngIf="!loading(); else loadingElement">
+      <app-product-edit
+        (add)="addProduct($event)"
+        (update)="updateProduct($event)"
+        (delete)="deleteProduct($event)"
+        [product]="product()"
+      ></app-product-edit>
+    </div>
+
+    <ng-template #loadingElement>Loading...</ng-template>
+  `,
 })
 export class ProductPageComponent {
-  product$ = this.store.select(selectProductById);
-  loading$ = this.store.select(selectProductsLoading);
-  errorMessage$ = this.store.select(selectProductsErrorMessage);
+  product = this.store.selectSignal(selectProductById);
+  loading = this.store.selectSignal(selectProductsLoading);
 
   constructor(private store: Store) {}
 

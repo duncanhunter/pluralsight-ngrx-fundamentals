@@ -12,8 +12,10 @@ import { ProductsListComponent } from '../products-list/products-list.component'
 import { NgIf } from '@angular/common';
 
 @Component({
-    selector: 'app-products-page',
-    template: `
+  standalone: true,
+  selector: 'app-products-page',
+  imports: [NgIf, ProductsListComponent],
+  template: `
     <div class="card error-card" *ngIf="errorMessage() !== ''">
       Error: {{ errorMessage() }}
     </div>
@@ -29,8 +31,6 @@ import { NgIf } from '@angular/common';
     </div>
     <ng-template #loadingElement>Loading...</ng-template>
   `,
-    standalone: true,
-    imports: [NgIf, ProductsListComponent],
 })
 export class ProductsPageComponent {
   products = this.store.selectSignal(selectProducts);
