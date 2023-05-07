@@ -27,7 +27,7 @@ export const productsReducer = createReducer(
     ...state,
     showProductCode: !state.showProductCode,
   })),
-  on(ProductsPageActions.loadProducts, (state) => ({
+  on(ProductsPageActions.loadProducts, (state) => adapter.setAll([], {
     ...state,
     loading: true,
     errorMessage: '',
